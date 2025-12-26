@@ -1,5 +1,11 @@
 "use client";
 
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+
 interface Props {
   onStart: () => void | Promise<void>;
   permissionStatus?: string;
@@ -7,51 +13,60 @@ interface Props {
 
 const HeroCard = ({ onStart, permissionStatus }: Props) => {
   return (
-    <section className="card relative overflow-hidden">
-      <div className="flex items-center justify-center py-16 px-8">
-        <div className="text-center">
-          <div className="mx-auto mb-6 h-20 w-20 rounded-full bg-gg-accent/10 flex items-center justify-center">
+    <Card>
+      <CardContent>
+        <Box sx={{ textAlign: "center", py: 6 }}>
+          <Box
+            sx={{
+              width: 80,
+              height: 80,
+              mx: "auto",
+              mb: 3,
+              borderRadius: "50%",
+              bgcolor: "primary.main",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: 0.1
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 text-gg-accent"
+              className="h-12 w-12"
               viewBox="0 0 24 24"
               fill="currentColor"
             >
               <path d="M8 5v14l11-7z" />
             </svg>
-          </div>
-          <h2 className="text-3xl font-extrabold">SYSTEM READY</h2>
-          <p className="mt-3 text-gg-muted max-w-xl mx-auto">
+          </Box>
+          <Typography variant="h4" sx={{ fontWeight: 800 }}>
+            SYSTEM READY
+          </Typography>
+          <Typography
+            color="text.secondary"
+            sx={{ mt: 2, maxWidth: 600, mx: "auto" }}
+          >
             Establish a secure link for real-time visual triage and life-saving
             medical guidance.
-          </p>
-
-          <div className="mt-8 flex justify-center">
-            <button
+          </Typography>
+          <Box sx={{ mt: 4 }}>
+            <Button
+              variant="contained"
+              color="primary"
               onClick={() => onStart()}
-              className="btn-primary inline-flex items-center gap-3"
+              size="large"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path d="M12 5v14M5 12h14" strokeWidth={0} />
-              </svg>
               START GUARDIAN SESSION
-            </button>
-          </div>
-
+            </Button>
+          </Box>
           {permissionStatus && (
-            <div className="mt-3 text-sm text-gg-muted">
+            <Typography color="text.secondary" sx={{ mt: 2 }}>
               Permission: {permissionStatus}
-            </div>
+            </Typography>
           )}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

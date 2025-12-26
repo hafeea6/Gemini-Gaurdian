@@ -6,6 +6,10 @@ import HeroCard from "../components/HeroCard";
 import SessionControl from "../components/SessionControl";
 import Sidebar from "../components/Sidebar";
 import { useCamera } from "../lib/useCamera";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import muiTheme from "../lib/muiTheme";
+import Box from "@mui/material/Box";
 
 export default function Home() {
   const [active, setActive] = useState(false);
@@ -51,30 +55,52 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gg-dark text-gg-fg font-sans">
-      <div className="container mx-auto grid grid-cols-12 gap-6 px-6 py-10">
-        <Header />
+    <ThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <Box
+        sx={{
+          minHeight: "100vh",
+          bgcolor: "background.default",
+          color: "text.primary",
+          fontFamily: muiTheme.typography.fontFamily,
+          px: 3,
+          py: 4
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: 1200,
+            mx: "auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 320px",
+            gap: 3
+          }}
+        >
+          <Header />
 
-        <main className="col-span-9 space-y-6">
-          <HeroCard onStart={handleStart} permissionStatus={status} />
-          <SessionControl
-            active={active}
-            onToggle={handleToggle}
-            onRequestPermissions={handleRequestPermissions}
-            permissionStatus={status}
-          />
-        </main>
+          <Box sx={{ gridColumn: "1 / 2" }}>
+            <HeroCard onStart={handleStart} permissionStatus={status} />
+            <Box sx={{ mt: 3 }}>
+              <SessionControl
+                active={active}
+                onToggle={handleToggle}
+                onRequestPermissions={handleRequestPermissions}
+                permissionStatus={status}
+              />
+            </Box>
+          </Box>
 
-        <aside className="col-span-3">
-          <Sidebar
-            missionLog={
-              missionLog.length
-                ? missionLog
-                : [error ? `Error: ${error}` : "No entries"]
-            }
-          />
-        </aside>
-      </div>
-    </div>
+          <Box sx={{ gridColumn: "2 / 3" }}>
+            <Sidebar
+              missionLog={
+                missionLog.length
+                  ? missionLog
+                  : [error ? `Error: ${error}` : "No entries"]
+              }
+            />
+          </Box>
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }

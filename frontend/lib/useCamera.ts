@@ -23,6 +23,7 @@ export function useCamera() {
       setStatus("granted");
       setError(null);
       return true;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       setStatus("denied");
       setError(e?.message ?? "Permission denied");

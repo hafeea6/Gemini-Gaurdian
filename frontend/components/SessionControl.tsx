@@ -1,5 +1,11 @@
 "use client";
 
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
 interface Props {
   active: boolean;
   onToggle: () => void;
@@ -14,52 +20,79 @@ const SessionControl = ({
   permissionStatus
 }: Props) => {
   return (
-    <section className="card flex items-center justify-between p-6">
-      <div className="flex items-center gap-6">
-        <div className="rounded-md bg-gg-muted/10 p-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gg-muted"
-            viewBox="0 0 24 24"
-            fill="currentColor"
+    <Card>
+      <CardContent
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box
+            sx={{
+              p: 1,
+              borderRadius: 1,
+              bgcolor: "text.secondary",
+              color: "background.paper"
+            }}
           >
-            <path d="M12 1a3 3 0 0 0-3 3v3a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM5 10v1a7 7 0 0 0 14 0v-1" />
-          </svg>
-        </div>
-        <div>
-          <div className="text-sm text-gg-muted">SESSION CONTROL</div>
-          <div className="text-sm font-semibold">
-            {active ? "LINK ACTIVE" : "NO ACTIVE LINK"}
-          </div>
-        </div>
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 1a3 3 0 0 0-3 3v3a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM5 10v1a7 7 0 0 0 14 0v-1" />
+            </svg>
+          </Box>
+          <Box>
+            <Typography variant="caption" color="text.secondary">
+              SESSION CONTROL
+            </Typography>
+            <Typography sx={{ fontWeight: 700 }}>
+              {active ? "LINK ACTIVE" : "NO ACTIVE LINK"}
+            </Typography>
+          </Box>
+        </Box>
 
-      <div className="flex items-center gap-4">
-        <button
-          onClick={async () => {
-            if (!active) {
-              const ok = await onRequestPermissions();
-              if (ok) onToggle();
-            } else {
-              onToggle();
-            }
-          }}
-          className="btn-start"
-        >
-          {active ? "END SESSION" : "START SESSION"}
-        </button>
-        <div className="p-2 rounded bg-gg-muted/10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gg-muted"
-            viewBox="0 0 24 24"
-            fill="currentColor"
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={async () => {
+              if (!active) {
+                const ok = await onRequestPermissions();
+                if (ok) onToggle();
+              } else {
+                onToggle();
+              }
+            }}
           >
-            <path d="M12 3v18" />
-          </svg>
-        </div>
-      </div>
-    </section>
+            {active ? "END SESSION" : "START SESSION"}
+          </Button>
+          <Box
+            sx={{
+              p: 1,
+              borderRadius: 1,
+              bgcolor: "text.secondary",
+              color: "background.paper"
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 3v18" />
+            </svg>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

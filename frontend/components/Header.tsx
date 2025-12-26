@@ -1,21 +1,45 @@
 "use client";
 
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+
 const Header = () => {
   return (
-    <header className="col-span-12 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-md bg-gg-accent flex items-center justify-center text-white font-bold">
+    <Box
+      component="header"
+      sx={{
+        gridColumn: "1 / -1",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box
+          sx={{
+            width: 40,
+            height: 40,
+            borderRadius: 1,
+            bgcolor: "primary.main",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "common.white",
+            fontWeight: 700
+          }}
+        >
           G
-        </div>
-        <h1 className="text-xl font-semibold tracking-wide">GEMINI GUARDIAN</h1>
-        <span className="ml-3 text-xs text-gg-muted">
+        </Box>
+        <Typography variant="h6">GEMINI GUARDIAN</Typography>
+        <Typography variant="caption" color="text.secondary" sx={{ ml: 1 }}>
           HYBRID AI ARCHITECTURE · REASONING CORE: FLASH 3.0
-        </span>
-      </div>
-      <button className="rounded px-4 py-2 bg-red-600 text-white text-sm font-medium">
+        </Typography>
+      </Box>
+      <Button color="error" variant="contained" size="small">
         ALERT EMS
-      </button>
-    </header>
+      </Button>
+    </Box>
   );
 };
 
