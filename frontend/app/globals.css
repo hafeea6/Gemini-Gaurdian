@@ -24,3 +24,55 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Gemini Guardian theme tokens */
+:root {
+  --gg-dark: #07070b;
+  --gg-fg: #e6e7ea;
+  --gg-muted: #9aa0a6;
+  --gg-accent: #5661ff;
+  --gg-card: rgba(255,255,255,0.03);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gg-dark: #07070b;
+    --gg-fg: #e6e7ea;
+  }
+}
+
+.bg-gg-dark { background-color: var(--gg-dark); }
+.text-gg-fg { color: var(--gg-fg); }
+.text-gg-muted { color: var(--gg-muted); }
+.bg-gg-accent { background-color: var(--gg-accent); }
+.bg-gg-accent\/10 { background-color: rgba(86,97,255,0.1); }
+
+.container { max-width: 1200px; }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  padding: 1rem;
+}
+
+.sidebar { background: rgba(255,255,255,0.02); border-radius: 10px; }
+
+.btn-primary {
+  background: linear-gradient(90deg,var(--gg-accent),#7a88ff);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.btn-start {
+  background: rgba(86,97,255,0.12);
+  color: var(--gg-fg);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+pre { font-family: inherit; font-size: 0.85rem; }
+
