@@ -47,6 +47,10 @@ body {
 .bg-gg-accent { background-color: var(--gg-accent); }
 .bg-gg-accent\/10 { background-color: rgba(86,97,255,0.1); }
 
+.bg-gg-muted { background-color: var(--gg-muted); }
+.bg-gg-muted\/8 { background-color: rgba(154,160,166,0.08); }
+.bg-gg-muted\/10 { background-color: rgba(154,160,166,0.1); }
+
 .container { max-width: 1200px; }
 
 .card {
